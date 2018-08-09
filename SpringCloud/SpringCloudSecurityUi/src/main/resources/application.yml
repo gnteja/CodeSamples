@@ -1,0 +1,14 @@
+server:
+  port: 8085
+security:
+  oauth2:
+    client:
+      clientId: 5f7283adb833cdae94a7
+      clientSecret: 7f4ac0935625f52c47855457b970bed6e651ce2c
+      accessTokenUri: https://github.com/login/oauth/access_token
+      userAuthorizationUri: https://github.com/login/oauth/authorize
+      clientAuthenticationScheme: form
+    resource:
+      userInfoUri: https://api.github.com/user
+      preferTokenInfo: false
+ 

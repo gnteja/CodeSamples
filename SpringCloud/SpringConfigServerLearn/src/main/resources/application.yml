@@ -1,0 +1,18 @@
+server:
+  port: 8888
+  
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/gnteja/spring-cloudconfigexample-tolls
+          search-paths:
+          - 'station*'
+          repos:
+            perf:
+              pattern:
+              - "*/perf"
+              uri: https://github.com/gnteja/spring-cloud-congifexample-tolls-perf
+              search-paths:
+                  - 'station*'

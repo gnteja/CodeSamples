@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-init-method="myInit"
+	default-destroy-method="myDestroy">
+
+	<bean id="triangle" class="com.learngn.springcorelearn.springbean.Triangle">
+		<property name="type" value="Equilateral"/>
+		<constructor-arg type="java.lang.String" index="0"  value="20"/>
+	</bean>
+	
+	<alias name="triangle" alias="simpleTriangle"/>
+	
+	<bean id="pointZero" class="com.learngn.springcorelearn.springbean.Point">
+		<property name="x" value="0"/>
+		<property name="y" value="0"/>
+	</bean>
+	
+	<bean id="pointTriangle" class="com.learngn.springcorelearn.springbean.PointTriangle" init-method="myInit" destroy-method="myDestroy">
+		<property name="pointA" ref="pointZero">
+			<!-- <idref/> can be used to restricated reference to id only  -->
+	 
+		</property>
+		<property name="pointB">
+			<bean class="com.learngn.springcorelearn.springbean.Point">
+				<property name="x" value="20"/>
+				<property name="y" value="0"/>
+			</bean>
+		</property>
+		<property name="pointC">
+			<bean class="com.learngn.springcorelearn.springbean.Point">
+				<property name="x" value="0"/>
+				<property name="y" value="20"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="pointlistZero" class="com.learngn.springcorelearn.springbean.Point">
+		<property name="x" value="0"/>
+		<property name="y" value="0"/>
+	</bean>
+	<bean id="pointlistOne" class="com.learngn.springcorelearn.springbean.Point">
+		<property name="x" value="20"/>
+		<property name="y" value="0"/>
+	</bean>
+	<bean id="pointlistTwo" class="com.learngn.springcorelearn.springbean.Point">
+		<property name="x" value="0"/>
+		<property name="y" value="20"/>
+	</bean>
+	
+	<bean id="collectionTriangle" class="com.learngn.springcorelearn.springbean.CollectionTriangle">
+		<property name="points">
+				<list>
+				<ref bean="pointlistZero"/>
+				<ref bean="pointlistOne"/>
+				<ref bean="pointlistTwo"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="autowiringPointTriangle" class="com.learngn.springcorelearn.springbean.PointTriangle" autowire="byName">
+	</bean>
+		<bean id="pointA" class="com.learngn.springcorelearn.springbean.Point">
+		<property name="x" value="0"/>
+		<property name="y" value="0"/>
+	</bean>
+	<bean id="pointB" class="com.learngn.springcorelearn.springbean.Point">
+		<property name="x" value="20"/>
+		<property name="y" value="0"/>
+	</bean>
+	
+	<bean id="pointC" class="com.learngn.springcorelearn.springbean.Point">
+		<property name="x" value="0"/>
+		<property name="y" value="20"/>
+	</bean>
+	
+	
+	<bean id="parentPointTriangle" class="com.learngn.springcorelearn.springbean.PointTriangle" abstract="true">
+		<property name="pointA" ref="pointZero"/>
+	</bean>
+	
+	<bean id="childPointTriangle" class="com.learngn.springcorelearn.springbean.PointTriangle" parent="parentPointTriangle">
+		<property name="pointB">
+			<bean class="com.learngn.springcorelearn.springbean.Point">
+				<property name="x" value="20"/>
+				<property name="y" value="0"/>
+			</bean>
+		</property>
+		<property name="pointC">
+			<bean class="com.learngn.springcorelearn.springbean.Point">
+				<property name="x" value="0"/>
+				<property name="y" value="20"/>
+			</bean>
+		</property>
+	</bean>
+	
+		<bean id="parentCollectionTriangle" class="com.learngn.springcorelearn.springbean.CollectionTriangle">
+		<property name="points">
+				<list>
+				<ref bean="pointlistZero"/>
+			</list>
+		</property>
+	</bean>
+		<bean id="childCollectionTriangle" class="com.learngn.springcorelearn.springbean.CollectionTriangle" parent="parentCollectionTriangle">
+		<property name="points">
+			<list merge="true">
+				<ref bean="pointlistOne"/>
+				<ref bean="pointlistTwo"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="childCollectionTriangleTwo" class="com.learngn.springcorelearn.springbean.CollectionTriangle" parent="parentCollectionTriangle" abstract="true">
+		<property name="points">
+			<list merge="true">
+				<ref bean="pointlistOne"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="childCollectionTriangleThree" class="com.learngn.springcorelearn.springbean.CollectionTriangle" parent="childCollectionTriangleTwo">
+		<property name="points">
+			<list merge="true">
+				<ref bean="pointlistTwo"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="com.learngn.springcorelearn.springbean.util.DisplayNameBeanProcessor"/>
+	
+	<bean id="circle" class="com.learngn.springcorelearn.springbean.Circle">
+		<property name="Center" ref="pointA"></property>
+	</bean>
+	 
+	
+	<bean id="center" class="com.learngn.springcorelearn.springbean.Point">
+		<property name="x" value="0"/>
+		<property name="y" value="20"/>
+	</bean>
+	
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>message</value>
+				<value>application</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>

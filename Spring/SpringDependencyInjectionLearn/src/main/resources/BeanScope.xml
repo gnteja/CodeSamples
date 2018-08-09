@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="personSingleton" class="com.learngn.springdependencyinjection.scope.PersonScope" scope="singleton"/>
+	<bean id="personPrototype" class="com.learngn.springdependencyinjection.scope.PersonScope" scope="prototype"/>
+	
+	
+	<!-- 
+	
+	<bean id="requestMessage" class="com.learngn.springdependencyinjection.scope.HelloMessageGeneratorScope" scope="request"/>
+	<bean id="sessionMessage" class="com.learngn.springdependencyinjection.scope.HelloMessageGeneratorScope" scope="session"/>
+	
+	
+	<bean id="helloMessageGeneratorScope" class="com.learngn.springdependencyinjection.scope.HelloMessageGeneratorScope"/>
+	<bean id="helloMessageGeneratorRequest" class="com.learngn.springdependencyinjection.scope.HelloMessageGeneratorScope" scope="request"/>
+	<bean id="helloMessageGeneratorSession" class="com.learngn.springdependencyinjection.scope.HelloMessageGeneratorScope" scope="session"/>
+	
+	<bean id="helloMessageGeneratorGlobalSession" class="com.learngn.springdependencyinjection.scope.HelloMessageGeneratorScope"/>
+	  -->
+	</beans>
